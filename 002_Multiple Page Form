@@ -1,0 +1,65 @@
+#Import tkinter
+from tkinter import *
+root = Tk()
+root.geometry("350x200")
+root.title("Form Pendaftaran CNPS")
+
+#Header and Label
+Label(root, text="Form 1 Data Diri", font = "ar 15 bold").grid(row=1, column=1)
+Label(root, text="Nama", font = "ar 10 bold").grid(row=2, column=0)
+Label(root, text="Umur", font = "ar 10 bold").grid(row=3, column=0)
+Label(root, text="Jenis Kelamin", font= "ar 10 bold").grid(row=4, column=0)
+Label(root, text="Agama", font = "ar 10 bold").grid(row=5, column=0)
+Label(root, text="Alamat", font= "ar 10 bold").grid(row=6, column=0)
+Label(root, text="Email", font= "ar 10 bold").grid(row=7, column=0)
+
+#Entry Value
+Nama = StringVar ()
+Entry(root, textvariable=Nama).grid(row=2, column=1)
+Umur = StringVar ()
+Entry(root, textvariable=Umur).grid(row=3, column=1)
+Kelamin = StringVar ()
+Entry(root, textvariable=Kelamin).grid(row=4, column=1)
+Agama = StringVar()
+Entry(root, textvariable=Agama).grid(row=5, column=1)
+Alamat = StringVar ()
+Entry(root, textvariable=Alamat).grid(row=6, column=1)
+Email = StringVar ()
+Entry(root, textvariable=Email).grid(row=7, column=1)
+
+#Function Def Page 2
+def page2():
+    list = root.grid_slaves()
+    for l in list:
+        l.destroy()
+        Label(root, text="Form 2 Riwayat Pendidikan", font = "ar 15 bold").grid(row=1, column=1)
+        Label(root, text="SD", font="ar 10 bold").grid(row=2, column=0)
+        Label(root, text="SMP", font="ar 10 bold").grid(row=3, column=0)
+        Label(root, text="SMA", font="ar 10 bold").grid(row=4, column=0)
+        Label(root, text="S1", font="ar 10 bold").grid(row=5, column=0)
+        Label(root, text="S2", font="ar 10 bold").grid(row=6, column=0)
+        Label(root, text="S3", font="ar 10 bold").grid(row=7, column=0)
+        SD = StringVar()
+        Entry(root, textvariable=SD).grid(row=2, column=1)
+        SMP = StringVar()
+        Entry(root, textvariable=SMP).grid(row=3, column=1)
+        SMA = StringVar()
+        Entry(root, textvariable=SMA).grid(row=4, column=1)
+        KUL1 = StringVar()
+        Entry(root, textvariable=KUL1).grid(row=5, column=1)
+        KUL2 = StringVar()
+        Entry(root, textvariable=KUL2).grid(row=6, column=1)
+        KUL3 = StringVar()
+        Entry(root, textvariable=KUL3).grid(row=7, column=1)
+        Button(text=" Submit! ",command=page3).grid(row=8, column=1)
+# Function Def Page 3
+def page3():
+    list = root.grid_slaves()
+    for l in list:
+        l.destroy()
+        emptylabel = Label(root, text="your form has been successfully submitted").grid(row=1, column=1, sticky=W)
+
+#Button call "Function Def"
+Button(text=" Next! ",command=page2).grid(row=8, column=1)
+
+root.mainloop()
