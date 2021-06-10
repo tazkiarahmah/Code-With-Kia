@@ -1,0 +1,30 @@
+#Import Tkinter
+from tkinter import *
+root = Tk()
+root.geometry("400x170")
+root.title("Math APK")
+
+#Header and Label
+Label(root, text="Operasi Matematika Persegi Panjang", font= "ar 12 bold").grid(row=1, column=1)
+Label(root, text="Panjang", font= "ar 10 bold").grid(row=2, column=0)
+Label(root, text="Lebar", font= "ar 10 bold").grid(row=3, column=0)
+
+#Entry Value
+Panjang = IntVar ()
+Entry(root, textvariable=Panjang).grid(row=2, column=1)
+Lebar = IntVar ()
+Entry(root, textvariable=Lebar).grid(row=3, column=1)
+
+#Function Def
+def Keliling():
+    Kel=(2*Panjang.get())+(2*Lebar.get())
+    emptylabel=Label(root,text='Keliling area adalah:   ' +str(Kel),fg="red").grid(row=4, column=1, sticky=W)
+def Luas():
+    luas=Panjang.get()*Lebar.get()
+    emptylabel=Label(root,text='luas area adalah:   ' +str(luas),fg="red").grid(row=5, column=1, sticky=W)
+
+#Button call "Function Def"
+Button(text=" Hitung Keliling",command=Keliling).grid(row=6, column=1)
+Button(text=" Hitung Luas",command=Luas).grid(row=7, column=1)
+
+root.mainloop()
