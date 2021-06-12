@@ -1,0 +1,70 @@
+#Import tkinter and pandas
+import pandas as pd
+from tkinter import *
+root = Tk()
+root.geometry("350x200")
+root.title("Form Pendaftaran CNPS")
+
+#Header and Label
+Label(root, text="Form 1 Data Diri", font = "ar 15 bold").grid(row=1, column=1)
+Label(root, text="Nama", font = "ar 10 bold").grid(row=2, column=0)
+Label(root, text="Umur", font = "ar 10 bold").grid(row=3, column=0)
+Label(root, text="Jenis Kelamin", font= "ar 10 bold").grid(row=4, column=0)
+Label(root, text="Agama", font = "ar 10 bold").grid(row=5, column=0)
+Label(root, text="Alamat", font= "ar 10 bold").grid(row=6, column=0)
+Label(root, text="Email", font= "ar 10 bold").grid(row=7, column=0)
+
+#EntryValue
+Nama = StringVar()
+Umur = StringVar()
+Kelamin = StringVar()
+Agama = StringVar()
+Alamat = StringVar()
+Email = StringVar()
+SD = StringVar()
+SMP = StringVar()
+SMA = StringVar()
+KUL1 = StringVar()
+KUL2 = StringVar()
+KUL3 = StringVar()
+
+#Entry Label
+Entry(root, textvariable=Nama).grid(row=2, column=1)
+Entry(root, textvariable=Umur).grid(row=3, column=1)
+Entry(root, textvariable=Kelamin).grid(row=4, column=1)
+Entry(root, textvariable=Agama).grid(row=5, column=1)
+Entry(root, textvariable=Alamat).grid(row=6, column=1)
+Entry(root, textvariable=Email).grid(row=7, column=1)
+
+
+#Function Def Page 2
+def page2():
+    list = root.grid_slaves()
+    for l in list:
+        l.destroy()
+        Label(root, text="Form 2 Riwayat Pendidikan", font = "ar 15 bold").grid(row=1, column=1)
+        Label(root, text="SD", font="ar 10 bold").grid(row=2, column=0)
+        Label(root, text="SMP", font="ar 10 bold").grid(row=3, column=0)
+        Label(root, text="SMA", font="ar 10 bold").grid(row=4, column=0)
+        Label(root, text="S1", font="ar 10 bold").grid(row=5, column=0)
+        Label(root, text="S2", font="ar 10 bold").grid(row=6, column=0)
+        Label(root, text="S3", font="ar 10 bold").grid(row=7, column=0)
+        Entry(root, textvariable=SD).grid(row=2, column=1)
+        Entry(root, textvariable=SMP).grid(row=3, column=1)
+        Entry(root, textvariable=SMA).grid(row=4, column=1)
+        Entry(root, textvariable=KUL1).grid(row=5, column=1)
+        Entry(root, textvariable=KUL2).grid(row=6, column=1)
+        Entry(root, textvariable=KUL3).grid(row=7, column=1)
+        Button(text=" Submit! ",command=export).grid(row=8, column=1)
+
+# Function Export
+def export():
+    emptylabel = Label(root, text="Your form has been successfully submitted").grid(row=9, column=1, sticky=W)
+    data= Nama.get(), Umur.get(), Kelamin.get(), Agama.get(), Alamat.get(), Email.get(), SD.get(), SMP.get(), SMA.get(), KUL1.get(), KUL2.get(), KUL3.get()
+    df = pd.DataFrame(data)
+    df.to_excel("FormData.xlsx")
+
+#Button call "Function Def"
+Button(text=" Next! ",command=page2).grid(row=8, column=1)
+
+root.mainloop()
