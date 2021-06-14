@@ -1,0 +1,60 @@
+#Import tkinter and pandas
+import pandas as pd
+from tkinter import *
+root = Tk()
+root.geometry("450x200")
+root.title("Psikotes CNPS")
+
+#EntryValue
+a = IntVar()
+b = IntVar()
+c = IntVar()
+
+#Header and Label
+Label(root, text="Psikotest 1: Kemampuan Verbal", font = "ar 13 bold").grid(row=1, column=1)
+Label(root, text="AKLIMATISASI = ... ", font = "ar 10").grid(row=3, column=0)
+Radiobutton(root, text="Depresi ", value=3, variable=a).grid(row=4, column=0)
+Radiobutton(root, text="Regresi ", value=2, variable=a).grid(row=5, column=0)
+Radiobutton(root, text="Adaptasi", value=1, variable=a).grid(row=6, column=0)
+Radiobutton(root, text="Resesi  ", value=4, variable=a).grid(row=7, column=0)
+
+def SOAL2():
+    if (a.get() == 1):
+        a.get()*1
+    else:
+        a.get()*0
+    list = root.grid_slaves()
+    for l in list:
+        l.destroy()
+    Label(root, text="Psikotest 1: Kemampuan Verbal", font="ar 13 bold").grid(row=1, column=1)
+    Label(root, text="KENDALA >< ... ", font="ar 10").grid(row=3, column=0)
+    Radiobutton(root, text="Pendukung", value=1, variable=b).grid(row=4, column=0)
+    Radiobutton(root, text="Hambatan ", value=2, variable=b).grid(row=5, column=0)
+    Radiobutton(root, text="Rintangan", value=3, variable=b).grid(row=6, column=0)
+    Radiobutton(root, text="Gangguan ", value=4, variable=b).grid(row=7, column=0)
+    Button(text=" Next! ", command=SOAL3).grid(row=8, column=1)
+    if (b.get() == 1):
+        b.get()*1
+    else:
+        b.get()*0
+def SOAL3():
+    list = root.grid_slaves()
+    for l in list:
+        l.destroy()
+    Label(root, text="Psikotest 1: Kemampuan Verbal", font="ar 13 bold").grid(row=1, column=1)
+    Label(root, text="Mobil - Bensin", font="ar 12").grid(row=3, column=1)
+    Label(root, text="Pesepeda - ..", font="ar 10").grid(row=4, column=0)
+    Radiobutton(root, text=" Makanan", value=1, variable=c).grid(row=5, column=0)
+    Radiobutton(root, text=" Sepatu", value=2, variable=c).grid(row=6, column=0)
+    Radiobutton(root, text="Lintasan", value=3, variable=c).grid(row=7, column=0)
+    Radiobutton(root, text="  Sepeda", value=4, variable=c).grid(row=8, column=0)
+    if (c.get() == 1):
+        c.get()*1
+    else:
+        c.get()*0
+    Button(text=" Submit! ").grid(row=8, column=1)
+    data = {"1=Benar , 0=Salah" :[a.get(), b.get(), c.get()]}
+    df = pd.DataFrame(data)
+    df.to_excel("PsikotesData.xlsx")
+Button(text=" Next! ",command=SOAL2).grid(row=8, column=1)
+root.mainloop()
